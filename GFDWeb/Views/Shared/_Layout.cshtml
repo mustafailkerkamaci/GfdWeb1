@@ -10,6 +10,21 @@
     <title>@(ViewData["Title"] ?? "Ana Sayfa") | Genç Finansçılar Derneği (GFD)</title>
 
     <style>
+        /* YENİ EKLENEN İNCE DUYURU ŞERİDİ */
+        .top-announcement-bar {
+            background: linear-gradient(to right, #8b5cf6, #3b82f6);
+            color: #ffffff;
+            text-align: center;
+            padding: 8px 15px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            z-index: 1001;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
         /* Variables & Reset */
         :root {
             --turk-mavisi: #3b82f6;
@@ -424,6 +439,9 @@
     </style>
 </head>
 <body>
+    <div class="top-announcement-bar">
+        <span>🕒</span> Mesai Saatlerimiz: Hafta İçi (09:00 - 17:00)
+    </div>
     <nav>
         <a href="/" class="logo">
             <img src="~/images/logo.png" alt="Genç Finansçılar Derneği (GFD) Kurumsal Logosu" />
