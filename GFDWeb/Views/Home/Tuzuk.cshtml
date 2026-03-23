@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Dernek Tüzüğü";
+}
+
+<style>
+    .pdf-wrapper {
+        max-width: 1000px;
+        margin: 60px auto;
+        background: rgba(30, 30, 30, 0.6); /* Yarı saydam siyah zemin */
+        backdrop-filter: blur(10px); /* Cam efekti */
+        padding: 20px;
+        border-radius: 15px;
+        border: 1px solid rgba(139, 92, 246, 0.3); /* Mor çerçeve */
+        box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #f8f9fa;
+            text-transform: uppercase;
+            display: inline-block;
+            border-bottom: 4px solid #8b5cf6; /* Mor alt çizgi */
+            padding-bottom: 10px;
+        }
+</style>
+
+<div class="pdf-wrapper">
+    <div class="page-header">
+        <h1>Dernek Tüzüğü</h1>
+    </div>
+
+    <iframe src="/images/tuzuk_dosyasi.pdf"
+            width="100%"
+            height="800px"
+            style="border: none; border-radius: 8px; background-color: white;">
+        <p>
+            Tarayıcınız PDF görüntülemeyi desteklemiyor.
+            <a href="/images/tuzuk_dosyasi.pdf" style="color: #8b5cf6;">Tüzüğü indirmek için tıklayın.</a>
+        </p>
+    </iframe>
+</div>

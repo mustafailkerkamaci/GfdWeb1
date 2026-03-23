@@ -1,0 +1,368 @@
+﻿@{
+    ViewData["Title"] = "Hakkımızda";
+}
+
+<style>
+    /* YENİ KOYU KONSEPT HAKKIMIZDA KART TASARIMLARI */
+    .about-section {
+        padding: 60px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .about-box {
+        background: rgba(20, 20, 25, 0.8);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        margin-bottom: 40px;
+        text-align: left;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 5px solid #3b82f6; /* Türk Mavisi Sol Çizgi */
+        backdrop-filter: blur(10px);
+    }
+
+        .about-box h3 {
+            color: #3b82f6;
+            margin-bottom: 15px;
+            font-weight: 800;
+            font-size: 24px;
+        }
+
+        .about-box p {
+            color: #d1d5db; /* Grimsi Beyaz */
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+    .profile-box {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        background: rgba(20, 20, 25, 0.8);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        margin-bottom: 40px;
+        text-align: left;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid #3b82f6;
+        flex-shrink: 0; /* Mobilde fotoğrafın ezilmesini önler */
+    }
+
+    .profile-info h3 {
+        margin: 0 0 5px 0;
+        color: #d1d5db;
+    }
+
+    .profile-info span {
+        color: #8b5cf6; /* Mor Vurgu */
+        font-weight: 700;
+        font-size: 14px;
+        text-transform: uppercase;
+    }
+
+    .profile-info p {
+        color: #9ca3af;
+        font-style: italic;
+        margin-top: 15px;
+        line-height: 1.6;
+    }
+
+    /* BÜYÜTÜLMÜŞ ŞEMA VE ÇİZGİLERİN CSS MANTIĞI */
+    .chart-section {
+        padding: 60px 20px;
+        background-color: transparent; /* Koyu zemin görünsün */
+        text-align: center;
+        margin-bottom: 40px;
+        border-radius: 15px;
+    }
+
+    .chart-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #3b82f6; /* Türk Mavisi */
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        border-bottom: 3px solid #8b5cf6; /* Mor Vurgu */
+        display: inline-block;
+        padding-bottom: 12px;
+    }
+
+    /* Ağaç Yapısı ve Bağlantı Çizgileri */
+    .tree {
+        display: flex;
+        justify-content: center;
+        overflow-x: auto;
+        padding-bottom: 30px;
+    }
+
+        .tree ul {
+            padding-top: 30px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .tree li {
+            text-align: center;
+            list-style-type: none;
+            position: relative;
+            padding: 30px 15px 0 15px;
+        }
+
+            /* Yatay Bağlantı Çizgileri - Rengi Koyu Temaya Uyarlandı */
+            .tree li::before, .tree li::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: 50%;
+                border-top: 3px solid rgba(255, 255, 255, 0.2);
+                width: 50%;
+                height: 30px;
+            }
+
+            .tree li::after {
+                right: auto;
+                left: 50%;
+                border-left: 3px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .tree li:only-child::after, .tree li:only-child::before {
+                display: none;
+            }
+
+            .tree li:only-child {
+                padding-top: 0;
+            }
+
+            .tree li:first-child::before, .tree li:last-child::after {
+                border: 0 none;
+            }
+
+            .tree li:last-child::before {
+                border-right: 3px solid rgba(255, 255, 255, 0.2);
+                border-radius: 0 5px 0 0;
+            }
+
+            .tree li:first-child::after {
+                border-radius: 5px 0 0 0;
+            }
+
+        .tree ul ul::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            border-left: 3px solid rgba(255, 255, 255, 0.2);
+            width: 0;
+            height: 30px;
+            transform: translateX(-50%);
+        }
+
+    /* BÜYÜTÜLMÜŞ ŞEMA İÇİNDEKİ KİŞİ KARTLARI */
+    .node-card {
+        background: rgba(20, 20, 25, 0.8); /* Cam efekti */
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        padding: 25px 15px;
+        width: 200px;
+        display: inline-block;
+        border-bottom: 5px solid #8b5cf6; /* Mor çizgi */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+        .node-card:hover {
+            transform: scale(1.08);
+            border-bottom: 5px solid #3b82f6; /* Üzerine gelince mavi */
+            box-shadow: 0 12px 35px rgba(59, 130, 246, 0.3);
+        }
+
+    .node-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border: 3px solid #2a2a35;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .node-name {
+        font-size: 16px;
+        font-weight: 700;
+        color: #d1d5db; /* Grimsi Beyaz */
+        margin-bottom: 5px;
+    }
+
+    .node-role {
+        font-size: 12px;
+        color: #9ca3af;
+        font-weight: 700;
+        text-transform: uppercase;
+    }
+
+    /* 📱 MOBİL UYUM SİHİRBAZI 📱 */
+    @@media (max-width: 768px) {
+        /* Profil kutularını mobilde alt alta diz */
+        .profile-box {
+            flex-direction: column;
+            text-align: center;
+            gap: 15px;
+            padding: 20px;
+        }
+        /* Şema kısmında sağa-sola kaymayı iptal et */
+        .tree {
+            overflow-x: hidden !important;
+            padding-bottom: 10px;
+        }
+            /* Liste elemanlarını (kartları) yan yana değil, dikey olarak alt alta diz */
+            .tree ul {
+                flex-direction: column;
+                padding-top: 0;
+                align-items: center;
+            }
+
+            .tree li {
+                padding: 10px 0; /* Yatay boşlukları sil, dikey boşluk ver */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+                /* Mobilde o karmaşık ağaç/soy ağacı çizgilerini gizle */
+                .tree li::before,
+                .tree li::after,
+                .tree ul ul::before {
+                    display: none !important;
+                }
+        /* Mobilde kartları biraz daha genişlet ve şık bir boşluk bırak */
+        .node-card {
+            width: 250px;
+            margin: 5px 0;
+        }
+    }
+</style>
+
+<div class="about-section">
+
+    <div class="about-box">
+        <h3>VİZYON</h3>
+        <p>Genç Finansçılar Derneği, ulusal ve uluslararası düzlemde faaliyet gösteren, iş dünyası ile gençlerimiz arasında sürdürülebilir bir döngü sağlayan, gençlerimizin potansiyellerini ortaya çıkararak sektörlerle gençlerimizi doğru eşleştirmeyi hedefleyen ve kişisel değer üreterek ülkemize makro ekonomik değer katmak için çalışan, özgün bir sivil toplum kuruluşudur.</p>
+    </div>
+
+    <div class="about-box" style="border-left-color: #8b5cf6;">
+        <h3>MİSYON</h3>
+        <p>Finansı tüm sektörlerin ortak dili haline getirerek gençleri küresel iş dünyasında rekabet edebilecek donanım, etik bilinç ve stratejik vizyonla yetiştirmek; sektörler arası iş birliğini güçlendiren bir gençlik hareketi oluşturmaktır.</p>
+    </div>
+
+    <div class="profile-box">
+        <img src="~/images/meryem_bingol.jpg" class="profile-photo" alt="Meryem Bingöl - Yönetim Kurulu Başkanı">
+        <div class="profile-info">
+            <h3>Meryem BİNGÖL</h3>
+            <span>Yönetim Kurulu Başkanı</span>
+            <p>"... Düzenleniyor"</p>
+        </div>
+    </div>
+
+    <div class="profile-box">
+        <img src="~/images/tugba_ucar.jpg" class="profile-photo" alt="Tuğba Uçar - Genel Sekreter">
+        <div class="profile-info">
+            <h3>Tuğba UÇAR</h3>
+            <span>Genel Sekreter</span>
+            <p>"... Düzenleniyor"</p>
+        </div>
+    </div>
+
+    <section class="chart-section">
+        <h2 class="chart-title">Yönetim Kurulu</h2>
+        <div class="tree">
+            <ul>
+                <li>
+                    <div class="node-card">
+                        <img src="~/images/meryem_bingol.jpg" class="node-photo" alt="Meryem Bingöl - Yönetim Kurulu Başkanı - Genç Finansçılar Derneği">
+                        <div class="node-name">Meryem BİNGÖL</div>
+                        <div class="node-role">(BAŞKAN)</div>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="node-card">
+                                <img src="~/images/deniz_ilhan.jpg" class="node-photo" alt="Deniz İlhan - Başkan Yardımcısı - Genç Finansçılar Derneği ">
+                                <div class="node-name">Deniz İLHAN</div>
+                                <div class="node-role">(BAŞKAN YARDIMCISI)</div>
+                            </div>
+                            <ul>
+                                <li>
+                                    <div class="node-card">
+                                        <img src="~/images/tugba_ucar.jpg" class="node-photo" alt="Tuğba Uçar - Genel Sekreter -Genç Finansçılar Derneği">
+                                        <div class="node-name">Tuğba UÇAR</div>
+                                        <div class="node-role">(GENEL SEKRETER)</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="node-card">
+                                        <img src="~/images/ali_aksakal.jpg" class="node-photo" alt="Muhammet Ali Aksakal - Sayman - Genç Finansçılar Derneği">
+                                        <div class="node-name">Muhammet Ali AKSAKAL</div>
+                                        <div class="node-role">(SAYMAN)</div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="node-card">
+                                        <img src="~/images/secem_kural.jpg" class="node-photo" alt="Secem Kural - Asil Üye - Genç Finansçılar Derneği">
+                                        <div class="node-name">Secem KURAL</div>
+                                        <div class="node-role">(ASİL ÜYE)</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="chart-section">
+        <h2 class="chart-title">Denetleme Kurulu</h2>
+        <div class="tree">
+            <ul>
+                <li>
+                    <div class="node-card">
+                        <img src="~/images/aleyna_ilkay_copur.jpg" class="node-photo" alt="Aleyna İlkay Çopur - Denetleme Kurulu Başkanı - Genç Finansçılar Derneği">
+                        <div class="node-name">Aleyna İlkay ÇOPUR</div>
+                        <div class="node-role">(BAŞKAN)</div>
+                    </div>
+                    <ul>
+                        <li>
+                            <div class="node-card">
+                                <img src="~/images/zehra_mutlu.jpg" class="node-photo" alt="Zehra Mutlu - Asil Üye - Genç Finansçılar Derneği">
+                                <div class="node-name">Zehra MUTLU</div>
+                                <div class="node-role">(Asil Üye)</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="node-card">
+                                <img src="~/images/irem_nur_kaya.jpg" class="node-photo" alt="İrem Nur Kaya - Asil Üye - Genç Finansçılar Derneği">
+                                <div class="node-name">İrem Nur KAYA</div>
+                                <div class="node-role">(Asil Üye)</div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</div>

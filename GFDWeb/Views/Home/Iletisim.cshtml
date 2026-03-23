@@ -1,0 +1,203 @@
+﻿@{
+    ViewData["Title"] = "İletişim";
+}
+
+<style>
+    .contact-section {
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+    }
+
+    /* SOL TARAF - İLETİŞİM BİLGİLERİ (KOYU KONSEPT) */
+    .contact-info {
+        flex: 1;
+        min-width: 300px;
+        background: rgba(20, 20, 25, 0.8);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-left: 5px solid #3b82f6;
+        backdrop-filter: blur(10px);
+    }
+
+        .contact-info h3 {
+            color: #3b82f6;
+            font-size: 26px;
+            margin-bottom: 25px;
+            font-weight: 800;
+        }
+
+    .info-item {
+        margin-bottom: 20px;
+        color: #d1d5db; /* Grimsi Beyaz */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+        .info-item strong {
+            color: #8b5cf6; /* Mor Vurgu */
+            min-width: 80px;
+        }
+
+    /* SAĞ TARAF - MESAJ FORMU (KOYU KONSEPT) */
+    .contact-form {
+        flex: 2;
+        min-width: 400px;
+        background: rgba(20, 20, 25, 0.8);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
+
+    .form-title {
+        color: #3b82f6;
+        margin-bottom: 25px;
+        font-size: 26px;
+        font-weight: 800;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #d1d5db;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        font-size: 15px;
+        font-family: inherit;
+        box-sizing: border-box;
+        transition: border-color 0.3s, background-color 0.3s;
+        background-color: rgba(15, 15, 20, 0.6);
+        color: #fff;
+    }
+
+        .form-control::placeholder {
+            color: #6b7280;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #3b82f6;
+            background-color: rgba(15, 15, 20, 0.9);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 140px;
+    }
+
+    .submit-btn {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        border-radius: 30px;
+        font-size: 16px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: 100%;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.4);
+        }
+
+    /* ALT TARAF - HARİTA */
+    .map-container {
+        width: 100%;
+        height: 450px;
+        border-radius: 15px;
+        overflow: hidden;
+        margin-top: 20px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+        border: 4px solid #2a2a35;
+    }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+</style>
+
+<div class="contact-section">
+
+    <div class="contact-info">
+        <h3>Bize Ulaşın</h3>
+        <div class="info-item">
+            <strong>Adres:</strong> Lalapaşa Mah. Cumhuriyet cad. Cumhuriyet İş Merkezi Kat:5 No: 209 Yakutiye - Erzurum
+        </div>
+        <div class="info-item">
+            <strong>Telefon:</strong> +90 442 502 36 22
+        </div>
+        <div class="info-item">
+            <strong>E-Posta:</strong> gfd@gfd.org.tr
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <h3 class="form-title">Mesaj Gönderin</h3>
+
+        @if (ViewBag.BasariMesaji != null)
+        {
+            <div style="background-color: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #34d399; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+                @ViewBag.BasariMesaji
+            </div>
+        }
+        @if (ViewBag.HataMesaji != null)
+        {
+            <div style="background-color: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; color: #f87171; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: 600;">
+                @ViewBag.HataMesaji
+            </div>
+        }
+
+        <form action="/Home/Iletisim" method="post">
+            <div class="form-group">
+                <label>Adınız Soyadınız</label>
+                <input type="text" name="adSoyad" class="form-control" placeholder="Adınızı ve soyadınızı giriniz" required>
+            </div>
+            <div class="form-group">
+                <label>E-Posta Adresiniz</label>
+                <input type="email" name="email" class="form-control" placeholder="ornek@mail.com" required>
+            </div>
+            <div class="form-group">
+                <label>Konu</label>
+                <input type="text" name="konu" class="form-control" placeholder="Mesajınızın konusu" required>
+            </div>
+            <div class="form-group">
+                <label>Mesajınız</label>
+                <textarea class="form-control" name="mesaj" placeholder="Buraya derneğimize iletmek istediğiniz mesajı yazın..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Mesajı Gönder</button>
+        </form>
+    </div>
+
+    <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d191.28649372968704!2d41.267886908504664!3d39.90594751035841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1scumhuriyet%20is%20merkezi!5e0!3m2!1str!2str!4v1773537017637!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+</div>

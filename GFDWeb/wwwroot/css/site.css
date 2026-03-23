@@ -1,0 +1,13 @@
+/* TÜM SİTENİN GLOBAL ARKA PLANI */
+body {
+    /* Koyu füme/siyah ana zemin */
+    background-color: #121212;
+    /* Sol üstte devasa mor, sağ altta devasa mavi yumuşak ışık huzmeleri (oval yansımalar) */
+    background-image: radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%), radial-gradient(circle at 85% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%);
+    /* Sayfa aşağı kaysa bile arka plandaki bu renkli ışıklar sabit kalsın */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    /* Global yazı rengi beyazımsı olsun */
+    color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

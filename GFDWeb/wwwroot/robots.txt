@@ -1,0 +1,9 @@
+﻿namespace GFDWeb.wwwroot
+{
+    public class robots
+    {
+    }
+}
+User-agent: *
+Allow: /
+Sitemap: https://gfd.org.tr/sitemap.xml

@@ -1,0 +1,211 @@
+﻿@{
+    ViewData["Title"] = "Üye Girişi";
+}
+
+<style>
+    /* BAL PETEĞİ ARKA PLAN */
+    .auth-section {
+        padding: 80px 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 70vh;
+        background-color: #fdfbf7;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23fca311' fill-opacity='0.1' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+
+    .auth-card-container {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+        z-index: 10;
+    }
+
+    .auth-card {
+        background: var(--beyaz);
+        padding: 50px;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(23, 162, 184, 0.15);
+        border-top: 6px solid var(--turk-mavisi);
+        position: relative;
+        z-index: 10;
+    }
+
+    .auth-title {
+        text-align: center;
+        color: var(--turk-mavisi-koyu);
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .auth-subtitle {
+        text-align: center;
+        color: #666;
+        margin-bottom: 30px;
+        font-size: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+    .form-control {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: 0.3s;
+        background: #fafafa;
+        box-sizing: border-box;
+    }
+
+        .form-control:focus {
+            border-color: var(--turk-mavisi);
+            outline: none;
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(23, 162, 184, 0.15);
+        }
+
+    .auth-options {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+        font-size: 14px;
+    }
+
+        .auth-options a {
+            color: var(--turk-mavisi);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+    .auth-submit {
+        width: 100%;
+        padding: 15px;
+        background: linear-gradient(135deg, var(--turk-mavisi), var(--turk-mavisi-koyu));
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        .auth-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(23, 162, 184, 0.3);
+        }
+
+    .auth-link {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #555;
+    }
+
+        .auth-link a {
+            color: #fca311;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+    /* UÇAN ARILARIN CSS ANİMASYONLARI */
+    .flying-bee {
+        position: absolute;
+        font-size: 32px;
+        z-index: 15;
+        pointer-events: none;
+    }
+
+    /* Kartın sol üstünde gezen arı */
+    .fb-1 {
+        top: -25px;
+        left: -30px;
+        animation: hoverBee1 4s infinite alternate ease-in-out;
+    }
+    /* Kartın sağ ortasında gezen arı */
+    .fb-2 {
+        top: 40%;
+        right: -40px;
+        font-size: 26px;
+        animation: hoverBee2 5s infinite alternate ease-in-out;
+    }
+    /* Kartın sol altında gezen arı */
+    .fb-3 {
+        bottom: -20px;
+        left: 20px;
+        font-size: 22px;
+        animation: hoverBee3 3.5s infinite alternate ease-in-out;
+    }
+
+    @@keyframes hoverBee1 {
+        0% {
+            transform: translate(0,0) rotate(-15deg);
+        }
+
+        100% {
+            transform: translate(15px, -20px) rotate(10deg);
+        }
+    }
+
+    @@keyframes hoverBee2 {
+        0% {
+            transform: translate(0,0) rotate(5deg);
+        }
+
+        100% {
+            transform: translate(-20px, 30px) rotate(-25deg);
+        }
+    }
+
+    @@keyframes hoverBee3 {
+        0% {
+            transform: translate(0,0) rotate(-5deg);
+        }
+
+        100% {
+            transform: translate(25px, 10px) rotate(15deg);
+        }
+    }
+</style>
+
+<div class="auth-section">
+    <div class="auth-card-container">
+
+        <span class="flying-bee fb-1">🐝</span>
+        <span class="flying-bee fb-2">🐝</span>
+        <span class="flying-bee fb-3">🐝</span>
+
+        <div class="auth-card">
+            <h2 class="auth-title">Hoş Geldiniz</h2>
+            <p class="auth-subtitle">Hesabınıza giriş yaparak devam edin.</p>
+
+            <form action="#" method="post">
+                <div class="form-group"><label>E-Posta Adresiniz</label><input type="email" class="form-control" required></div>
+                <div class="form-group"><label>Şifre</label><input type="password" class="form-control" required></div>
+
+                <div class="auth-options">
+                    <label style="display: flex; align-items: center; gap: 5px; cursor: pointer; font-weight: normal;">
+                        <input type="checkbox"> Beni Hatırla
+                    </label>
+                    <a href="#">Şifremi Unuttum</a>
+                </div>
+
+                <button type="submit" class="auth-submit">Giriş Yap</button>
+            </form>
+            <div class="auth-link">Hesabınız yok mu? <a href="/Home/UyeOl">Hemen Üye Olun</a></div>
+        </div>
+    </div>
+</div>

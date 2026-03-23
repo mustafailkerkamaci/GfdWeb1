@@ -1,0 +1,227 @@
+﻿@{
+    ViewData["Title"] = "Paydaşlar";
+}
+
+<style>
+    /* YENİ KOYU KONSEPT PAYDAŞLAR SAYFASI */
+    .stakeholder-section {
+        padding: 80px 20px;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        min-height: 60vh;
+    }
+
+    .sh-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #3b82f6;
+        margin-bottom: 50px;
+        border-bottom: 3px solid #8b5cf6;
+        display: inline-block;
+        padding-bottom: 12px;
+        text-transform: uppercase;
+    }
+
+    /* NORMAL LOGOLAR İÇİN IZGARA */
+    .partners-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    /* TABELA LOGOLARI İÇİN ÖZEL YAN YANA YAPI */
+    .tabela-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    /* STANDART YATAY VE KARE LOGO KARTLARI */
+    .partner-card {
+        background: rgba(20, 20, 25, 0.8) !important;
+        padding: 25px 20px;
+        border-radius: 15px;
+        display: flex;
+        flex-direction: column; /* Logoyu ve metni alt alta dizer */
+        align-items: center;
+        justify-content: center;
+        gap: 20px; /* Logo ile yazı arasına şık bir boşluk bırakır */
+        box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        height: 260px; /* Metne yer açmak için kartı biraz uzattık */
+        backdrop-filter: blur(10px);
+    }
+
+        .partner-card:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(59, 130, 246, 0.4);
+            border-color: #8b5cf6;
+        }
+
+        .partner-card img {
+            width: 100%;
+            height: 130px; /* Logoya ayrılan net alan */
+            object-fit: contain;
+            filter: drop-shadow(0px 5px 10px rgba(0,0,0,0.2));
+        }
+
+    /* LOGO ALTI ZARİF İSİM TASARIMI */
+    .partner-name {
+        color: #d1d5db; /* Göz yormayan grimsi beyaz */
+        font-size: 15px;
+        font-weight: 700;
+        text-align: center;
+        margin: 0;
+        letter-spacing: 0.5px;
+    }
+
+    /* DİKEY TABELA LOGOLARI İÇİN ÖZEL STİL */
+    .vertical-card {
+        height: auto;
+        min-height: 400px;
+        padding: 25px;
+    }
+
+        .vertical-card img {
+            height: 280px; /* Tabelalara daha fazla resim alanı */
+        }
+
+    /* 📱 EFSANE MOBİL UYUM SİHİRBAZI 📱 */
+    @@media (max-width: 768px) {
+        .partners-grid
+
+    {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .tabela-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .partner-card {
+        height: 180px; /* Mobilde kartları biraz küçülttük */
+        padding: 15px 10px;
+        gap: 10px; /* Yazı ile logo arasını daralttık */
+    }
+
+        .partner-card img {
+            height: 80px; /* Mobilde logoların boyu */
+        }
+
+    .partner-name {
+        font-size: 12px; /* Mobilde yazıları küçülttük ki taşmasın */
+    }
+
+    .vertical-card {
+        min-height: 240px;
+    }
+
+        .vertical-card img {
+            height: 140px;
+        }
+
+    }
+</style>
+
+<div class="stakeholder-section">
+    <h2 class="sh-title">Ana Paydaşlarımız</h2>
+
+    <div class="partners-grid">
+        <div class="partner-card">
+            <img src="~/images/ataturkuni_logo.png" alt="Atatürk Üniversitesi Oltu Meslek Yüksekokulu - GFD Paydaşı" />
+            <h4 class="partner-name">Atatürk Üniversitesi </h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/cindilli_logo.jpeg" alt="Cindilli Otomotiv Erzurum - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Cindilli Otomotiv</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/turya_papatya_cicekcilik.jpeg" alt="Turya Papatya Çiçekçilik - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Turya Papatya Çiçekçilik</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/isintas_logo.jpeg" alt="Işıntaş - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Işıntaş</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/gzt_logo.jpg" alt="GZT - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Gözütok</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/divani_kale.jpeg" alt="Divani Kale - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Divani Kale</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/bymeral_logo.jpeg" alt="By Meral - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">By Meral</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/alpin_logo.jpg" alt="Alpin Outdoor - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Alpin Outdoor</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/fc_design_studio.jpeg" alt="FC Design Studio - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">FC Design Studio</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/kardelentv_logo.png" alt="Kardelen Tv - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Kardelen Tv</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/palkop_logo.jpg" alt="Palandöken İnovasyon Kadın Girişimciler Üretim ve İşletme Kooperatifi - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">S.S PALKOP</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/gtd_logo.jpeg" alt="Erzurum Gastronomi ve Turizm Derneği- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Erzurum Gastronomi ve Turizm Derneği</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/turmar_logo.jpeg" alt="Turmar Travel- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Turmar Travel</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/kraltas_mermerit_logo.jpeg" alt="Kraltaş Mermer- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Kraltaş Mermer</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/lalapasatrc_logo.jpeg" alt="Lalapaşa Turkcell- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Lalapaşa Turkcell</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/iletisimbilgisayar_logo.jpeg" alt="İletişim Bilgisayar- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">İletişim Bilgisayar - İrfan Bayrakçı</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/eco_crow_logo.jpeg" alt="Eco Crow- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Eco-Crow</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/oltu_cicekcilik_logo.jpeg" alt="Oltu  Çiçekçilik- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Oltu  Çiçekçilik</h4>
+        </div>
+        <div class="partner-card">
+            <img src="~/images/blackcat_logo.jpeg" alt="Blackcat- Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Black Cat Eyewear</h4>
+        </div>
+
+    </div>
+
+    <div class="tabela-grid">
+        <div class="partner-card vertical-card">
+            <img src="~/images/tabela1_logo.jpg" alt="Power Academy - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Power Academy</h4>
+        </div>
+        <div class="partner-card vertical-card">
+            <img src="~/images/tabela2_logo.jpg" alt="Power Academy - Genç Finansçılar Derneği Ana Sponsoru" />
+            <h4 class="partner-name">Power Academy</h4>
+        </div>
+    </div>
+
+</div>

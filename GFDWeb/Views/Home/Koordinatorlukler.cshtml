@@ -1,0 +1,209 @@
+﻿@{
+    ViewData["Title"] = "Koordinatörlükler";
+}
+
+<style>
+    /* YENİ KOYU KONSEPT KOORDİNATÖRLÜKLER KART TASARIMI */
+    .teams-container {
+        padding: 60px 20px;
+        background-color: transparent;
+        text-align: center;
+    }
+
+    .team-group {
+        margin-bottom: 70px;
+    }
+
+        .team-group h3 {
+            font-size: 26px;
+            font-weight: 700;
+            color: #3b82f6; /* Açık Mavi (Turk Mavisi) */
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #8b5cf6; /* Mor vurgu */
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+    .team-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .team-card {
+        background: rgba(20, 20, 25, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        padding: 20px 15px;
+        width: 190px;
+        border-bottom: 3px solid #8b5cf6;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        backdrop-filter: blur(10px);
+    }
+
+        .team-card:hover {
+            transform: translateY(-8px);
+            border-bottom: 3px solid #3b82f6;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+    .team-photo {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border: 3px solid #2a2a35;
+    }
+
+    /* FOTOĞRAFI OLMAYANLAR İÇİN LOGO STİLİ */
+    .logo-photo {
+        object-fit: contain;
+        background-color: #ffffff;
+        padding: 10px;
+    }
+
+    /* AKADEMİK UNVANLAR İÇİN YENİ STİL */
+    .team-title {
+        font-size: 12px;
+        color: #9ca3af;
+        font-weight: 600;
+        margin-bottom: 2px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .team-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: #d1d5db;
+        margin-bottom: 5px;
+        line-height: 1.3;
+    }
+</style>
+
+<section class="teams-container">
+
+    <div class="team-group">
+        <h3>Proje Koordinatörlüğü</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="~/images/logo.png" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Emin ÇUBUKCİ</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-title">Doç. Dr.</div>
+                <div class="team-name">Serpil SUMER ADİN</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-title">Dr. Öğr. Üyesi</div>
+                <div class="team-name">Hilal MOLA</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-title">Arş. Gör.</div>
+                <div class="team-name">Beyza DEMİR</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/sukriye_yeliz_canozer.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Şükriye Yeliz CANÖZER</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/selma_okumus.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Selma OKUMUŞ</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" alt="Genç Finansçılar Derneği" class="team-photo logo-photo" >
+                <div class="team-name">Melike Nur ATEŞ</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-group">
+        <h3>Uluslararası İlişkiler Koordinatörlüğü</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="~/images/logo.png" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Duru Dicle ALTINKAYNAK</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" class="team-photo logo-photo" alt="Genç Finansçılar Derneği">
+                <div class="team-name">Ayşe AYGÖR</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-group">
+        <h3>Bilişim Koordinatörlüğü</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="~/images/mburak_turgut.PNG" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Mustafa Burak TURGUT</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/abdurrahman_kaya.JPG" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Abdurrahman KAYA</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-group">
+        <h3>Strateji Geliştirme Koordinatörlüğü</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="~/images/irem_nur_kaya.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">İrem Nur KAYA</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/tulin_koc.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Tülin KOÇ</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/nisanur_dogan.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Nisanur DOĞAN</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/kubra_sarmasik.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Kübra SARMAŞIK</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/zehra_mutlu.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Zehra MUTLU</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-group">
+        <h3>Operasyon Koordinatörlüğü</h3>
+        <div class="team-grid">
+            <div class="team-card">
+                <img src="~/images/aleyna_demir.jpg" alt="Genç Finansçılar Derneği" class="team-photo">
+                <div class="team-name">Aleyna DEMİR</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" class="team-photo logo-photo" alt="Genç Finansçılar Derneği">
+                <div class="team-name">Sina Nur SAK</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" class="team-photo logo-photo" alt="Genç Finansçılar Derneği">
+                <div class="team-name">Gamze BAĞATOR</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" class="team-photo logo-photo" alt="Genç Finansçılar Derneği">
+                <div class="team-name">Menşure DURAN</div>
+            </div>
+            <div class="team-card">
+                <img src="~/images/logo.png" class="team-photo logo-photo" alt="Genç Finansçılar Derneği">
+                <div class="team-name">Kaan Arda GÖKDEMİR</div>
+            </div>
+        </div>
+    </div>
+
+</section>
