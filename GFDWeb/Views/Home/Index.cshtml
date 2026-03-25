@@ -398,6 +398,72 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0);
     }
+    /* YENİ EKLENEN VİDEO BÖLÜMÜ TASARIMI */
+    .video-section {
+        padding: 60px 20px 20px;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Görüntü Oranı (Responsive için) */
+        height: 0;
+        overflow: hidden;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        border: 2px solid rgba(139, 92, 246, 0.4); /* Şık mor çerçeve */
+        background: #000;
+    }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+    /* YENİ EKLENEN 3'LÜ AFİŞ BÖLÜMÜ TASARIMI */
+    .posters-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* Bilgisayarda yan yana 3 afiş */
+        gap: 30px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .poster-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .poster-item img:hover {
+            transform: scale(1.03); /* Üzerine gelince hafif büyüme efekti */
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+        }
+
+    /* AFİŞLER İÇİN MOBİL UYUM (RESPONSIVE) */
+    @@media (max-width: 992px) {
+        .posters-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        /* Tablette 2'li */
+    }
+
+    @@media (max-width: 768px) {
+        .posters-grid {
+            grid-template-columns: 1fr;
+        }
+        /* Telefonda alt alta 1'li */
+    }
 </style>
 
 <div class="hero-slider">
@@ -430,9 +496,26 @@
     }
 </div>
 
-<section class="event-banner-section" style="padding: 40px 20px 0px 20px; text-align: center; max-width: 700px; margin: 0 auto;">
-    <a href="/genc-zirveler" style="display: inline-block;">
-        <img src="~/images/etkinlik.jpeg" alt="26 Mart İş Dünyası Öğrenci Buluşmaları Finans Zirvesi Etkinlik Afişi" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" />
+<section class="video-section">
+    <div class="section-header" style="margin-bottom: 30px;">
+        <h2>Etkinliklerimizden Kareler</h2>
+    </div>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/dCxZ9BLcRTw?autoplay=1&mute=1" title="GFD Tanıtım Videosu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+</section>
+
+<section class="posters-grid">
+    <a href="/genc-zirveler" class="poster-item">
+        <img src="~/images/muhasebe_denetim_paneli_afis.png" alt="İş Dünyası Kariyer Paneli" />
+    </a>
+
+    <a href="/genc-zirveler" class="poster-item">
+        <img src="~/images/etkinlik.jpeg" alt="26 Mart İş Dünyası Öğrenci Buluşmaları" />
+    </a>
+
+    <a href="/genc-zirveler" class="poster-item">
+        <img src="~/images/is_dunyasi_kariyer_paneli.png" alt="Muhasebe ve Denetim Paneli" />
     </a>
 </section>
 
