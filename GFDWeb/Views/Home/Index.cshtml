@@ -336,6 +336,60 @@
                 transform: scale(1.03);
                 box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
             }
+
+
+    /* 4. ÖNE ÇIKANLAR - SLIDER YAPI (YENİ EKLENDİ) */
+    .highlights-section {
+        padding: 80px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .highlights-slider {
+        display: flex;
+        gap: 30px;
+        overflow-x: auto; /* Yatay kaydırmaya izin ver */
+        scroll-snap-type: x mandatory; /* Kartların tam oturmasını sağlar */
+        padding-bottom: 20px; /* Kaydırma çubuğu için boşluk */
+    }
+
+        /* Windows kaydırma çubuğunu şıklaştıralım */
+        .highlights-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .highlights-slider::-webkit-scrollbar-thumb {
+            background: var(--mor-vurgu);
+            border-radius: 10px;
+        }
+
+        .highlights-slider::-webkit-scrollbar-track {
+            background: #222;
+            border-radius: 10px;
+        }
+
+    .highlight-card {
+        flex: 0 0 auto; /* Kartların sıkışıp küçülmesini engeller */
+        width: 350px; /* Her kartın sabit genişliği */
+        scroll-snap-align: start; /* Kaydırırken kartın başına yapışır */
+        background: #222;
+        border-radius: 12px;
+        overflow: hidden;
+        border: 1px solid #333;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        position: relative;
+    }
+    /* Mobil uyum için genişliği ayarla */
+    @@media (max-width: 576px) {
+        .highlight-card
+
+    {
+        width: 300px;
+    }
+
+    }
+
+    /* (Mevcut .hl-img-placeholder, .hl-content, .hl-badge CSS kodların aynen kalabilir) */
 </style>
 
 <section class="video-section">
@@ -393,14 +447,16 @@
     <div class="section-header">
         <h2>Öne Çıkanlar</h2>
     </div>
-    <div class="highlights-grid">
+
+    <div class="highlights-slider">
+
         <div class="highlight-card">
             <div class="hl-badge">Çok Yakında</div>
             <div class="hl-img-placeholder">📰</div>
             <div class="hl-content">
                 <h3>İlk Makalemiz Hazırlanıyor</h3>
                 <p>Finans, ekonomi ve kariyer üzerine alanında uzman isimlerin kaleme aldığı makaleler ve dernek haberlerimiz çok yakında bu alanda yayınlanacaktır.</p>
-                <a href="#" style="color: var(--mavi-vurgu); font-weight: 600; text-decoration: none;">Devamını Oku &rarr;</a>
+                <a href="/makaleler" style="color: var(--mavi-vurgu); font-weight: 600; text-decoration: none;">Devamını Oku &rarr;</a>
             </div>
         </div>
 
@@ -409,10 +465,11 @@
             <div class="hl-img-placeholder purple">📢</div>
             <div class="hl-content">
                 <h3>Dernek Tanıtım Dosyası</h3>
-                <p>Yönetim kurulumuzun ve koordinatörlerimizin titizlikle hazırladığı faaliyet ve vizyon sunumlarımız cok yakinda buraya eklenecektir.</p>
-                <a href="#" style="color: var(--mavi-vurgu); font-weight: 600; text-decoration: none;">Devamını Oku &rarr;</a>
+                <p>Yönetim kurulumuzun ve koordinatörlerimizin titizlikle hazırladığı, derneğimizin vizyonunu anlatan faaliyet sunumlarımız çok yakında yayında.</p>
+                <a href="/makaleler" style="color: var(--mavi-vurgu); font-weight: 600; text-decoration: none;">Devamını Oku &rarr;</a>
             </div>
         </div>
+
     </div>
 </section>
 

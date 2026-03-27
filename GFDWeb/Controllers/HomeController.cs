@@ -66,6 +66,12 @@ namespace GFDWeb.Controllers
             return View(imageNames);
         }
 
+        [Route("makaleler")]
+        public IActionResult Makaleler()
+        {
+            return View();
+        }
+
         // İletişim sayfasını AÇMAK için (HttpGet)
         [Route("iletisim")]
         [HttpGet]
