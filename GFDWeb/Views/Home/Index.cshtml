@@ -12,127 +12,6 @@
         --takvim-sari: #facc15;
     }
 
-    /* 1. SLIDER KISMI - İKİ SÜTUNLU (YAZI SOLDA, RESİM SAĞDA) */
-    .hero-slider {
-        position: relative;
-        width: 100%;
-        height: 500px;
-        overflow: hidden;
-        background-color: #000;
-        display: flex;
-    }
-
-    .slide {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 0.8s ease-in-out;
-        z-index: 1;
-        display: flex;
-        background-color: #111;
-    }
-
-        .slide.active {
-            opacity: 1;
-            z-index: 2;
-        }
-
-    /* Sol Taraf: Yazı Bloğu */
-    .slide-text-section {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 40px 5%;
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.95) 0%, rgba(139, 92, 246, 0.95) 100%);
-        color: white;
-        z-index: 3;
-    }
-
-        .slide-text-section h2 {
-            font-size: 40px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
-
-        .slide-text-section p {
-            font-size: 16px;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-    /* Sağ Taraf: Orijinal Fotoğraf */
-    .slide-image-section {
-        flex: 1.5;
-        height: 100%;
-        position: relative;
-        background-color: var(--koyu-zemin);
-    }
-
-        .slide-image-section img {
-            width: 100%;
-            height: 100%;
-            object-fit: center;
-            background-color: #000;
-        }
-
-    .slide-btn {
-        background: white;
-        color: var(--mor-vurgu);
-        padding: 12px 30px;
-        text-decoration: none;
-        font-weight: 700;
-        border-radius: 30px;
-        font-size: 16px;
-        transition: 0.3s;
-        display: inline-table;
-        width: max-content;
-    }
-
-        .slide-btn:hover {
-            background: var(--koyu-zemin);
-            color: white;
-        }
-
-    /* OKLAR */
-    .slider-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(45, 45, 45, 0.85);
-        color: white;
-        border: none;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        font-size: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 4;
-        transition: 0.3s;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-        .slider-arrow:hover {
-            background: var(--mavi-vurgu);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-    .prev-arrow {
-        left: 20px;
-    }
-
-    .next-arrow {
-        right: 20px;
-    }
-
     /* BAŞLIKLAR */
     .section-header {
         text-align: center;
@@ -233,7 +112,7 @@
             pointer-events: none;
         }
 
-    /* Mor oval */
+    /* Mor oval (Etkinlik Günü) */
     .event-day {
         background: var(--mor-vurgu) !important;
         color: white !important;
@@ -398,6 +277,7 @@
         opacity: 1;
         transform: translateX(-50%) translateY(0);
     }
+
     /* YENİ EKLENEN VİDEO BÖLÜMÜ TASARIMI */
     .video-section {
         padding: 60px 20px 20px;
@@ -408,12 +288,12 @@
 
     .video-container {
         position: relative;
-        padding-bottom: 56.25%; /* 16:9 Görüntü Oranı (Responsive için) */
+        padding-bottom: 56.25%;
         height: 0;
         overflow: hidden;
         border-radius: 15px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        border: 2px solid rgba(139, 92, 246, 0.4); /* Şık mor çerçeve */
+        border: 2px solid rgba(139, 92, 246, 0.4);
         background: #000;
     }
 
@@ -426,78 +306,39 @@
             border: 0;
         }
 
-    /* YENİ EKLENEN 3'LÜ AFİŞ BÖLÜMÜ TASARIMI */
+    /* AFİŞ BÖLÜMÜ TASARIMI - ORTALANMIŞ VERSİYON */
     .posters-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Bilgisayarda yan yana 3 afiş */
+        display: flex; /* Flexbox kullanarak içindekileri ortalıyoruz */
+        justify-content: center; /* Yatayda ortalama */
+        align-items: center;
         gap: 30px;
         padding: 40px 20px;
         max-width: 1200px;
         margin: 0 auto;
     }
 
-    .poster-item img {
+    .poster-item {
+        max-width: 400px; /* Afişin ekranı tamamen kaplamasını engelliyoruz */
         width: 100%;
-        height: auto;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: block;
     }
 
-        .poster-item img:hover {
-            transform: scale(1.03); /* Üzerine gelince hafif büyüme efekti */
-            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+        .poster-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-    /* AFİŞLER İÇİN MOBİL UYUM (RESPONSIVE) */
-    @@media (max-width: 992px) {
-        .posters-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-        /* Tablette 2'li */
-    }
-
-    @@media (max-width: 768px) {
-        .posters-grid {
-            grid-template-columns: 1fr;
-        }
-        /* Telefonda alt alta 1'li */
-    }
+            .poster-item img:hover {
+                transform: scale(1.03);
+                box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+            }
 </style>
 
-<div class="hero-slider">
-    <button class="slider-arrow prev-arrow" onclick="moveSlide(-1)">&#10094;</button>
-    <button class="slider-arrow next-arrow" onclick="moveSlide(1)">&#10095;</button>
-
-    @for (int i = 1; i <= 24; i++)
-    {
-        <div class="slide @(i == 1 ? "active" : "")">
-            <div class="slide-text-section">
-                @if (i % 3 == 0)
-                {
-                    <h2>Finansın Geleceğine Yön Ver!</h2>
-                }
-                else if (i % 3 == 1)
-                {
-                    <h2>Ulusal Genç Zirveler Başlıyor</h2>
-                }
-                else
-                {
-                    <h2>Sektörle Gençleri Buluşturuyoruz</h2>
-                }
-                <p>Kariyerinize yön verecek eğitimler, paneller ve network fırsatlarını kaçırmayın.</p>
-                <a href="/genc-zirveler" class="slide-btn">Detayları İncele</a>
-            </div>
-            <div class="slide-image-section">
-                <img src="~/images/slider@(i).jpeg" alt="Genç Finansçılar Derneği Erzurum Oltu Öğrenci Buluşmaları Etkinliği Kariyer ve Finans Zirvesi Katılımcıları @i">
-            </div>
-        </div>
-    }
-</div>
-
 <section class="video-section">
-    
     <div class="video-container">
         <iframe src="https://www.youtube.com/embed/dCxZ9BLcRTw?autoplay=1&mute=1" title="GFD Tanıtım Videosu" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     </div>
@@ -517,8 +358,7 @@
     <div class="calendar-container">
         <div class="calendar-header">
             <button id="prevMonth">&laquo; Önceki</button>
-            <h3 id="monthYearDisplay">MART 2026</h3>
-            <button id="nextMonth">Sonraki &raquo;</button>
+            <h3 id="monthYearDisplay"></h3> <button id="nextMonth">Sonraki &raquo;</button>
         </div>
         <div class="calendar-grid">
             <div>Pzt</div><div>Sal</div><div>Çar</div><div>Per</div><div>Cum</div><div>Cmt</div><div>Paz</div>
@@ -538,12 +378,10 @@
             <div class="counter-number" data-target="30">0</div>
             <div class="counter-label">İş Ortaklığı</div>
         </div>
-
         <div class="counter-box">
             <div class="counter-number" data-target="50">0</div>
             <div class="counter-label">Ana Paydaşlar</div>
         </div>
-
         <div class="counter-box">
             <div class="counter-number" data-target="5000">0</div>
             <div class="counter-label">Ulaşılan Gençler</div>
@@ -579,22 +417,10 @@
 </section>
 
 <script>
-    // --- 1. SLIDER KODLARI ---
-    let slideIndex = 0;
-    const slides = document.querySelectorAll('.slide');
-    function showSlide(index) {
-        slides.forEach(s => s.classList.remove('active'));
-        if(index >= slides.length) slideIndex = 0;
-        if(index < 0) slideIndex = slides.length - 1;
-        slides[slideIndex].classList.add('active');
-    }
-    function moveSlide(n) { slideIndex += n; showSlide(slideIndex); }
-    setInterval(() => moveSlide(1), 6000);
-
-    // --- 2. DİNAMİK TAKVİM KODLARI ---
+    // --- 1. DİNAMİK TAKVİM KODLARI ---
     const monthNames = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
-    let currentMonth = new Date().getMonth();
-    let currentYear = new Date().getFullYear();
+    let currentMonth = new Date().getMonth(); // Otomatik olarak bulunduğumuz ayı alır
+    let currentYear = new Date().getFullYear(); // Otomatik olarak bulunduğumuz yılı alır
 
     function renderCalendar() {
         const daysContainer = document.getElementById('calendarDays');
@@ -610,12 +436,14 @@
             daysContainer.innerHTML += `<div class="calendar-day empty"></div>`;
         }
         for(let i = 1; i <= daysInMonth; i++) {
-            // TAKVİM LİNKİ BURADA TEMİZLENDİ
-            if(i === 26) {
+
+            // JavaScript'te Aylar 0'dan başlar (0=Ocak, 1=Şubat, 2=Mart, 3=Nisan).
+            // 3. ayın (Nisan) 18. günü için şart yazıyoruz:
+            if(currentMonth === 3 && i === 18) {
                 daysContainer.innerHTML += `
                     <div class="calendar-day" style="cursor: pointer;" onclick="window.location.href='/genc-zirveler'">
                         <div class="event-day">${i}</div>
-                        <div class="event-tooltip">İş Dünyası Öğrenci Buluşmaları</div>
+                        <div class="event-tooltip">Kadın İzi</div>
                     </div>`;
             } else {
                 daysContainer.innerHTML += `<div class="calendar-day">${i}</div>`;
@@ -633,12 +461,12 @@
         renderCalendar();
     });
 
+    // Sayfa yüklendiğinde takvimi çiz
     renderCalendar();
 
-    // --- 3. AKILLI SAYAÇ KODLARI ---
+    // --- 2. AKILLI SAYAÇ KODLARI ---
     const counters = document.querySelectorAll('.counter-number');
     const speed = 200;
-
     const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

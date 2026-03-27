@@ -25,53 +25,42 @@
         padding-bottom: 12px;
     }
 
-    /* 3'LÜ AFİŞ IZGARASI (YENİ EKLENDİ) */
+    /* AFİŞ ORTALAMA İÇİN FLEXBOX (YENİ EKLENDİ) */
     .zirve-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr); /* Bilgisayarda 3'lü */
+        display: flex; /* Öğeleri yan yana ve ortalı dizmek için Flexbox kullandık */
+        justify-content: center; /* Yatayda tam ortaya alır */
+        align-items: center;
         gap: 30px;
         width: 100%;
         max-width: 1200px;
     }
 
     /* AFİŞ İÇİN ÖZEL CAM EFEKTLİ KART TASARIMI */
-    .event-card {
-        background: rgba(20, 20, 25, 0.8);
-        padding: 20px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        backdrop-filter: blur(10px);
+    .poster-item {
+        max-width: 400px; /* Afişin ekranı devasa kaplamasını önler */
         width: 100%;
-        box-sizing: border-box; /* İŞTE KARTLARIN SIKIŞMASINI ENGELLEYEN SİHİRLİ KOD */
+        display: block;
         transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     }
 
-        .event-card:hover {
+        .poster-item:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
-            border-color: #3b82f6;
         }
 
-        .event-card img {
+        .poster-item img {
             width: 100%;
             height: auto;
-            border-radius: 12px;
-            display: block; /* Resmin altındaki o gereksiz boşluğu siler */
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: block;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
-    /* MOBİL VE TABLET UYUMU (RESPONSIVE) */
-    @@media (max-width: 992px) {
-        .zirve-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @@media (max-width: 768px) {
-        .zirve-grid {
-            grid-template-columns: 1fr;
-        }
-    }
+            .poster-item img:hover {
+                transform: scale(1.03);
+                box-shadow: 0 15px 40px rgba(139, 92, 246, 0.6);
+            }
 </style>
 
 <div class="zirve-section">

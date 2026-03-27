@@ -1,0 +1,191 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Galeri";
+}
+
+<style>
+    /* GALERİ ANA BÖLÜM TASARIMI */
+    .gallery-section {
+        padding: 80px 20px;
+        text-align: center;
+        min-height: 60vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: transparent;
+    }
+
+    .gallery-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #3b82f6;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+        border-bottom: 3px solid #8b5cf6;
+        display: inline-block;
+        padding-bottom: 12px;
+    }
+
+    /* PINTEREST (MASONRY) IZGARA SİSTEMİ */
+    .masonry-container {
+        column-count: 3;
+        column-gap: 20px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    /* HER BİR FOTOĞRAF KARTI */
+    .masonry-item {
+        break-inside: avoid;
+        margin-bottom: 20px;
+        border-radius: 15px;
+        overflow: hidden;
+        background: rgba(20, 20, 25, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        cursor: pointer; /* Fare imlecini tıklanabilir el simgesine çevirir */
+    }
+
+        .masonry-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+            .masonry-item img:hover {
+                transform: scale(1.05);
+            }
+
+    /* TABLET VE MOBİL UYUMU */
+    @@media (max-width: 992px) {
+        .masonry-container {
+            column-count: 2;
+        }
+    }
+
+    @@media (max-width: 576px) {
+        .masonry-container {
+            column-count: 1;
+        }
+    }
+
+    /* ========================================= */
+    /* YENİ EKLENEN LIGHTBOX (POP-UP) TASARIMI  */
+    /* ========================================= */
+    .lightbox-overlay {
+        display: none; /* Varsayılan olarak gizli */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(10, 10, 15, 0.95); /* Koyu arka plan */
+        z-index: 9999; /* Tüm menülerin üzerinde görünmesi için */
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(5px); /* Arkadaki siteyi hafif bulanıklaştırır */
+    }
+
+        .lightbox-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+    .lightbox-content {
+        max-width: 90%;
+        max-height: 90vh; /* Ekrana sığması için */
+        border-radius: 8px;
+        box-shadow: 0 0 40px rgba(139, 92, 246, 0.4); /* GFD'nin mor renginde parlama */
+        transform: scale(0.8); /* İlk başta biraz küçük */
+        transition: transform 0.3s ease; /* Büyüme animasyonu */
+    }
+
+    .lightbox-overlay.active .lightbox-content {
+        transform: scale(1); /* Açılınca normal boyutuna gelir */
+    }
+
+    .lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 40px;
+        color: #fff;
+        font-size: 50px;
+        font-weight: 300;
+        cursor: pointer;
+        transition: color 0.3s, transform 0.3s;
+        user-select: none;
+    }
+
+        .lightbox-close:hover {
+            color: #8b5cf6;
+            transform: scale(1.2); /* Üzerine gelince çarpı hafif büyür */
+        }
+</style>
+
+<div class="gallery-section">
+    <h1 class="gallery-title">Dernek Galerisi</h1>
+
+    <div class="masonry-container">
+
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var fileName in Model)
+            {
+                /* DİKKAT: onClick fonksiyonunu buraya ekledik */
+                <div class="masonry-item" onclick="openLightbox(this)">
+                    <img src="~/images/Gallery/@fileName" alt="Genç Finansçılar Derneği" loading="lazy" />
+                </div>
+            }
+        }
+        else
+        {
+            <p style="color: #fff;">Gallery klasöründe henüz fotoğraf bulunmamaktadır.</p>
+        }
+
+    </div>
+</div>
+
+<div class="lightbox-overlay" id="lightbox" onclick="closeLightbox(event)">
+    <span class="lightbox-close" onclick="closeLightbox(event)">&times;</span>
+    <img class="lightbox-content" id="lightbox-img" src="" alt="Büyütülmüş Etkinlik Görseli">
+</div>
+
+<script>
+    // Resmi Büyütme Fonksiyonu
+    function openLightbox(element) {
+        // 1. Tıklanan kutunun (element) içindeki resmin yolunu alıyoruz
+        var imgSrc = element.querySelector('img').src;
+
+        // 2. Bu yolu, pop-up içindeki büyük resme yapıştırıyoruz
+        document.getElementById('lightbox-img').src = imgSrc;
+
+        // 3. Gizli olan pop-up ekranını aktif (görünür) hale getiriyoruz
+        document.getElementById('lightbox').classList.add('active');
+
+        // 4. Mükemmel detay: Pop-up açıkken arkada sitenin yukarı-aşağı kaymasını engelliyoruz
+        document.body.style.overflow = 'hidden';
+    }
+
+    // Resmi Kapatma Fonksiyonu
+    function closeLightbox(event) {
+        // Sadece siyah arka plana veya "X" işaretine tıklanırsa kapat (resmin kendisine tıklayınca kapanmaması için)
+        if (event.target.id === 'lightbox' || event.target.className === 'lightbox-close') {
+
+            // Pop-up ekranını gizle
+            document.getElementById('lightbox').classList.remove('active');
+
+            // Sitenin yukarı-aşağı kaydırılmasını tekrar aktif et
+            document.body.style.overflow = 'auto';
+        }
+    }
+</script>

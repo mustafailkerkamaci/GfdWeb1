@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using GFDWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace GFDWeb.Controllers
 {
@@ -40,6 +41,29 @@ namespace GFDWeb.Controllers
         public IActionResult GencZirveler()
         {
             return View();
+        }
+
+        [Route("galeri")]
+        public IActionResult Galeri()
+        {
+            // 1. wwwroot/images/Gallery klasörünün tam yolunu belirliyoruz
+            string galleryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Gallery");
+
+            // 2. Fotoğraf isimlerini tutacağımız boş bir liste oluşturuyoruz
+            List<string> imageNames = new List<string>();
+
+            // 3. Eğer klasör varsa içindeki dosyaları okuyup listeye ekliyoruz
+            if (Directory.Exists(galleryPath))
+            {
+                string[] files = Directory.GetFiles(galleryPath);
+                foreach (var file in files)
+                {
+                    imageNames.Add(Path.GetFileName(file)); // Sadece dosya adını alır (Örn: gorsel_1.jpg)
+                }
+            }
+
+            // 4. Hazırladığımız listeyi sayfaya (View'a) gönderiyoruz
+            return View(imageNames);
         }
 
         // İletişim sayfasını AÇMAK için (HttpGet)
